@@ -7,3 +7,4 @@ sentence-transformers
 ollama
 jupyter
 python-dotenv
+langchain_google_genai
