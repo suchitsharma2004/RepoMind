@@ -1,17 +1,9 @@
-# Core LangChain + RAG
 langchain
 langchain-community
 chromadb
 requests
-
-# Google Gemini
 google-generativeai
-
-# Embeddings (if you want to use HuggingFace locally)
 sentence-transformers
-
-# Optional: For local LLMs (if you also want to try Ollama)
 ollama
-
-# Optional: For notebooks/testing
 jupyter
+python-dotenv
