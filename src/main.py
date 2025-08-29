@@ -1,8 +1,8 @@
-from src.github_api import fetch_issues
-from src.agent import summarize_issues
+from .github_api import fetch_issues
+from .agent import summarize_issues
 
 def main():
-    repo = "streamlit/streamlit"   # Example repo
+    repo = "suchitsharma2004/Chatapp"   # Example repo
     issues = fetch_issues(repo, label="bug")
 
     if not issues:
