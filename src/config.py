@@ -11,7 +11,7 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 genai.configure(api_key=GOOGLE_API_KEY)
 
-def get_gemini_model(model="gemini-1.5-flash"):
+def get_gemini_model(model="gemini-2.5-flash"):
     return genai.GenerativeModel(model)
 
 
