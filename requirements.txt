@@ -8,3 +8,5 @@ ollama
 jupyter
 python-dotenv
 langchain_google_genai
+streamlit
+flask
