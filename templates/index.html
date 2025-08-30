@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub Issues & PR Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="gradient-text">🐙 GitHub Issues & PR Tracker</h1>
+
+        <form method="POST">
+            <input type="text" name="repo" placeholder="Repo (owner/repo)" value="{{ repo }}">
+            <input type="text" name="label" placeholder="Label (e.g., bug)" value="{{ label }}">
+            <button type="submit">Fetch Data</button>
+        </form>
+
+        {% if summary %}
+        <!-- Summary Section -->
+        <div class="result">
+            <h2 class="gradient-text">Summary of Issues</h2>
+            <p>{{ summary.summary_text }}</p>
+        </div>
+
+        <!-- Issues Table -->
+        {% if summary.issues %}
+        <h2 class="gradient-text">Open Issues</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for issue in summary.issues %}
+                <tr>
+                    <td>{{ issue.title }}</td>
+                    <td><a href="{{ issue.url }}" target="_blank">Link</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+        <!-- Issue–PR Mapping Table -->
+        {% if summary.mapping %}
+        <h2 class="gradient-text">Issue–PR Mapping</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Issue</th>
+                    <th>Linked PRs</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for issue_num, prs in summary.mapping.items() %}
+                <tr>
+                    <td>{{ issue_num }}</td>
+                    <td>
+                        {% if prs %}
+                        <ul>
+                            {% for pr in prs %}
+                            <li><a href="{{ pr }}" target="_blank">{{ pr }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        None
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
